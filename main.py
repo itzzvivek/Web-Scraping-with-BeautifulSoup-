@@ -27,10 +27,10 @@ soup = BeautifulSoup(htmlContent,'html.parser')
 #print(type(title.string))#2. NavigableString
 #print(type(soup))#3. BeautifulSoup
 #4. Comments 
-markup = "<p><!-- this is a comment --></p>"
-soup2 = BeautifulSoup(markup)
-print(type(soup2.string))
-exit()
+# markup = "<p><!-- this is a comment --></p>"
+# soup2 = BeautifulSoup(markup)
+# print(type(soup2.string))
+# exit()
 
 # get the title of the html page
 # title = soup.title
@@ -62,8 +62,35 @@ all_links =set()
 # print(anchors)
 
 #get all the links on the page:
-for link in anchors:
-    if(link.get('href') != '#'):
-        linkText = "https://codewithharry.com" +link.get('href')
-        all_links.add(link)
-        print(linkText)
+# for link in anchors:
+#     if(link.get('href') != '#'):
+#         linkText = "https://codewithharry.com" +link.get('href')
+#         all_links.add(link)
+#         print(linkText)
+
+navbarSupportedContent = soup.find(id='navbarSupportedContent')
+# print(navbarSupportedContent)
+# print(navbarSupportedContent.contents)
+for elem in navbarSupportedContent.children:
+    # print(elem)
+
+#.content- A tag's children are available as a list
+#.children - A tag's children are available as a generator
+
+# for item in navbarSupportedContent.strings:
+#     print(item)
+
+# for item in navbarSupportedContent.stripped_strings:
+#     print(item)
+
+# print(navbarSupportedContent.parent)
+# for item in navbarSupportedContent.parents: 
+#     print(item.name)
+
+# print(navbarSupportedContent.next_sibling.next_sibling)
+# print(navbarSupportedContent.previous_sibling.previous_sibling)
+
+# elem = soup.select('.modal-footer')
+# print(elem)
+elem = soup.select('#loginModal')[0] 
+print(elem)
